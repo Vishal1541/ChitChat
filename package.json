@@ -1,0 +1,21 @@
+{
+  "name": "chitchat",
+  "version": "1.0.0",
+  "description": "A chatting app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vishal Anand",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-session-firebase": "^5.13.0",
+    "ejs": "^2.6.1",
+    "express": "*",
+    "express-session": "^1.15.6",
+    "firebase": "^5.7.2",
+    "firebase-admin": "^6.4.0",
+    "request": "^2.88.0"
+  }
+}
