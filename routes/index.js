@@ -5,7 +5,7 @@ var firebase = require ("firebase");
 const session = require ("express-session");
 const FirebaseStore = require ('connect-session-firebase')(session);
 
-var details;
+var details, userLogin = false, result;
 
 var config = {
     apiKey: "AIzaSyC01608HbTyGIQfYfwzo-j9LGAG6fsZpsY",
@@ -68,6 +68,9 @@ router.post ("/signup_auth", function (req, res, next) {
 });
 
 router.post ("/chat", function (req, res, next) {
+    if (userLogin != false) {
+        res.render ("chat", {details: details});
+    }
     var email = req.body.email;
     var password = req.body.password;
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -75,8 +78,10 @@ router.post ("/chat", function (req, res, next) {
         console.log (email + " " + password + " signed in successfully!");
         // res.render ("signup_success", {email: email});
         // res.send (email + " signed in success!");
-        
-        res.render ("chat", {details: details});
+        result = res;
+        // if (userLogin) {
+        //     res.render ("chat", {details: details});
+        // }
     })
     .catch(function(error) {
         // Handle Errors here.
@@ -90,6 +95,7 @@ router.post ("/signout", function (req, res, next) {
     const user = details.username;
     firebase.auth().signOut()
     .then (function () {
+        userLogin = false;
         console.log (user + " signed out!");
         res.render ("signin");
     })
@@ -104,9 +110,12 @@ firebase.auth().onAuthStateChanged (function (user) {
         ref.on ("value", function (snapshot ) {
             details = snapshot.val ();
             console.log (details.username + " signed in!");
+            userLogin = user;
+            result.render ("chat", {details: details});
         });
     }
     else {
+        userLogin = false;
         console.log ("No user signed in!");
     }
 });
