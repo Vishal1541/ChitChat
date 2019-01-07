@@ -86,6 +86,18 @@ router.post ("/chat", function (req, res, next) {
     });
 });
 
+router.post ("/signout", function (req, res, next) {
+    const user = details.username;
+    firebase.auth().signOut()
+    .then (function () {
+        console.log (user + " signed out!");
+        res.render ("signin");
+    })
+    .catch (function (error) {
+        console.log (error);
+    })
+});
+
 firebase.auth().onAuthStateChanged (function (user) {
     if (user) {
         var ref = firebase.database ().ref ("users").child(user.uid);

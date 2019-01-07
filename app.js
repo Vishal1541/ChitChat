@@ -12,7 +12,16 @@ app.use (bodyParser.urlencoded ({extended: false}));
 app.engine ("html", require ("ejs").renderFile);
 app.use (express.static (path.join (__dirname, "public")));
 app.use ("/", routes);
-app.listen (port, () => {
+server = app.listen (port, () => {
     console.log ("Server started at port " + port);
 });
+const io = require ("socket.io")(server);
+io.on ("connection", (socket) => {
+    socket.on ("username", (data) => {
+        socket.username = data.username;
+    });
+
+    console.log (socket.username + " joined!");
+});
+
 exports = module.exports = app

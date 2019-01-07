@@ -1,11 +1,27 @@
 <html>
     <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
         <title>ChitChat</title>
     </head>
     <body>
+            
         <% include header %>
-        Hello <%= details.username %>
+        <script>
+            setTimeout(function() {
+                document.getElementById("main").style.display = "block";
+            }, 5000);
+        </script>
+        <div id = "main" style="display: none">
+            Hello <%= details.username %>
+            <form name = "logout" method="POST" action="signout">
+                <input type = "submit" value = "Log Out">
+            </form>
+        </div>
+
 
         <% include footer %>    
+        
     </body>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="chat.js"></script>
 </html>
