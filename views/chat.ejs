@@ -1,22 +1,31 @@
 <html>
     <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
         <title> <%= details.username %>|ChitChat</title>
+        <link rel="stylesheet" type="text/css" href="css/chat.css" >
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     </head>
     <body>
             
         <% include header %>
 
         <div id = "main">
-            Hello <%= details.username %>
+            Hello <div id = "username"><%= details.username %></div>
+            <b style="color: red">NOTE: If the user name displayed is incorrect, then try reloading the page once or twice.</b>
             <form name = "logout" method="POST" action="signout">
                 <input type = "submit" value = "Log Out">
             </form>
+            <div class = "message_container">
+                <div id = "message_box">
+                    
+                </div>
+                <input type = "text" id = "message_text">
+                <button id = "send_message" type = "button">Send</button>
+            </div>
         </div>
 
         <% include footer %> 
 
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="chat.js"></script>
     </body>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="chat.js"></script>
 </html>

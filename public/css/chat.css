@@ -1,0 +1,44 @@
+#username {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(33, 104, 0);
+}
+.message_container {
+    width: 70%;
+    height: 60%;
+    margin-left: 15%;
+    padding: 40px 10px 10px 10px;
+    align-content: center;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 10px;
+}
+#message_box {
+    height: 80%;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
+#message_text {
+    width: 90%;
+    height: 40px;
+}
+#send_message {
+    height: 40px;
+}
+.me {
+    margin-left: 64%;
+}
+.message {
+    background: #f0f0f0;
+    border-radius: 7px;
+    overflow: auto;
+    padding: 20px;
+    width: 30%;
+    overflow-x: hidden;
+    margin-bottom: 5px;
+}
+.msg_username {
+    color: #505050;
+}
+.msg_actual {
+    font-size: 15px;
+}

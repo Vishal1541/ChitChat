@@ -19,9 +19,11 @@ const io = require ("socket.io")(server);
 io.on ("connection", (socket) => {
     socket.on ("username", (data) => {
         socket.username = data.username;
+        console.log (socket.username + " joined!");
     });
-
-    console.log (socket.username + " joined!");
+    socket.on ("new_msg", (data) => {
+        io.sockets.emit ("new_msg", {message: data.message, username: socket.username});
+    });
 });
 
 exports = module.exports = app
