@@ -1,16 +1,17 @@
 <html>
     <head>
         <title>SignUp|ChitChat</title>
+        <link rel = "stylesheet" type = "text/css" href = "css/form.css">
     </head>
     <body>
         <% include header %>
-        Sign Up here:
-        <form name = "signUp" method = "POST" action = "signup_auth">
+        <form class = "form" name = "signUp" method = "POST" action = "signup_auth">
+            <span class = "head">Sign Up</span>
             Email: <br>
             <input type = "text" name = "email"> <br>
             Password: <br>
             <input type = "password" name = "password"> <br>
-            <input type = "submit" value = "submit">
+            <input class = "button" type = "submit" value = "submit">
         </form>
 
         <% include footer %>    
