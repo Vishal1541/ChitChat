@@ -8,17 +8,21 @@ $(function() {
     console.log ("user is " + username);
     send_message.click (function () {
         me = true;
-        console.log("msg = " + message);
-        socket.emit ("new_msg", {message: message.val()});
-        document.getElementById("message_text").value = "";
+        if(message != "") {
+            console.log("msg = " + message);
+            socket.emit ("new_msg", {message: message.val()});
+            document.getElementById("message_text").value = "";
+        }
     });
     socket.on ("new_msg", (data) => {
-        console.log ("data is: " + data);
-        class_me = "";
-        if (me) {
-            class_me = "me";
+        if(data.message != "") {
+            console.log ("data is: " + data);
+            class_me = "";
+            if (me) {
+                class_me = "me";
+            }
+            message_box.append ("<div class = 'message " + class_me + "'> <span class = 'msg_username'>" + data.username + "<br></span> <span class = 'msg_actual'>" + data.message + "</span> </div>");
         }
-        message_box.append ("<div class = 'message " + class_me + "'> <span class = 'msg_username'>" + data.username + "<br></span> <span class = 'msg_actual'>" + data.message + "</span> </div>");
         me = false;
     })
     socket.emit("username", {username: username});
